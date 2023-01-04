@@ -42,3 +42,5 @@ const requestHandler = (req, res) => {
 };
 
 module.exports = requestHandler;
+
+// to kill all the ports open run:   taskkill /f /im node.exe
