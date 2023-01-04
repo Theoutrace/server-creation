@@ -9,13 +9,14 @@ const requestHandler = (req, res) => {
       if (err) {
         console.log(err);
       }
-      console.log("data frm file: ", data);
+      //   console.log("data frm file: ", data);
       res.write("<html>");
       res.write("<head><title>My Page</title></head>");
       res.write(
         `<body>${data}<form action="/message" method="POST" ><input type="text" name="message"><button type="submit">send</button></form></body>`
       );
       res.write("</html>");
+
       return res.end();
     });
   }
@@ -23,12 +24,12 @@ const requestHandler = (req, res) => {
   if (url === "/message" && method === "POST") {
     const body = [];
     req.on("data", (chunk) => {
-      console.log("chunk is :", chunk);
+      //   console.log("chunk is :", chunk);
       body.push(chunk);
     });
     return req.on("end", () => {
       const parsedBody = Buffer.concat(body).toString();
-      console.log("parsedBody", parsedBody);
+      //   console.log("parsedBody", parsedBody);
       const message = parsedBody.split("=")[1];
       fs.writeFile("message.txt", message, (err) => {
         // console.log(err);
